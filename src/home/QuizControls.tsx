@@ -27,6 +27,12 @@ function QuizControls() {
       <Button variant={"outline"} className="bg-green-300" onClick={handleNext}>
         Next
       </Button>
+      {/* Complete Quiz Button */}
+      {/* {currentQuestionIndex === questions.length - 1 && !quizComplete && (
+        <Button onClick={handleCompleteQuiz} disabled={!isCompleteEnabled}>
+          Complete Quiz
+        </Button>
+      )} */}
     </div>
   );
 }

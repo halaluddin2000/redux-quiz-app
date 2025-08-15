@@ -4,13 +4,15 @@ import { createSlice } from "@reduxjs/toolkit";
 export interface quizState {
   question: QuizQuestion[];
   currentQuestionIndex: number;
-  userAnswer: any;
+  userAnswer: (string | null)[];
+  quizComplete: boolean;
 }
 
 const initialState: quizState = {
   question: quizData,
   currentQuestionIndex: 0,
   userAnswer: Array(quizData.length).fill(null),
+  quizComplete: false,
 };
 
 export const quizSlice = createSlice({

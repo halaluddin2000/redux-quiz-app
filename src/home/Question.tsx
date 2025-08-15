@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { Button } from "@/components/ui/button";
 import { setAnswer } from "@/redux/features/quiz/quizSlice";
@@ -24,8 +24,9 @@ export function Question() {
   return (
     <div className="flex justify-center">
       <Card className="w-[490px]">
-        <CardHeader className="font-bold text-2xl w-full">
-          {currentQuestion.question}
+        <CardHeader className="font-bold text-xl w-full">
+          <CardTitle>{currentQuestion.question}</CardTitle>
+          {/* {currentQuestion.question} */}
         </CardHeader>
         <CardContent>
           {currentQuestion.options.map((options, index) => (
@@ -39,8 +40,8 @@ export function Question() {
               {options}
             </Button>
           ))}
+          <QuizControls />
         </CardContent>
-        <QuizControls />
       </Card>
     </div>
   );
