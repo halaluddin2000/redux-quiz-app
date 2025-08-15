@@ -1,10 +1,16 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { Button } from "@/components/ui/button";
-import { setAnswer } from "@/redux/features/quiz/quizSlice";
-import QuizControls from "./QuizControls";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
-export function Question() {
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import QuizControls from "./QuizControls";
+import { setAnswer } from "@/redux/features/quiz/quizSlice";
+export default function Question() {
   const dispatch = useAppDispatch();
   const { question, currentQuestionIndex, userAnswer } = useAppSelector(
     (state) => state.quiz
@@ -23,28 +29,33 @@ export function Question() {
 
   return (
     <div className="flex justify-center">
-      <Card className="w-[490px]">
-        <CardHeader className="font-bold text-xl w-full">
+      <Card className="w-[450px] ">
+        <CardHeader>
           <CardTitle>{currentQuestion.question}</CardTitle>
-          {/* {currentQuestion.question} */}
+          <CardDescription className="font-semibold mt-2">
+            Question{" "}
+            <span className="font-medium"> {currentQuestionIndex} </span>
+            of <span className="font-medium"> {question.length}</span>
+          </CardDescription>
         </CardHeader>
+
         <CardContent>
-          {currentQuestion.options.map((options, index) => (
-            <Button
-              variant={options === currentAnswer ? "default" : "outline"}
-              onClick={() => handleAnswerChange(options)}
-              className="w-full font-bold mt-4"
-              size={"lg"}
-              key={index}
-            >
-              {options}
-            </Button>
-          ))}
-          <QuizControls />
+          <div>
+            {currentQuestion.options.map((option, index) => (
+              <Button
+                variant={option === currentAnswer ? "default" : "outline"}
+                onClick={() => handleAnswerChange(option)}
+                className="w-full mt-3"
+                size={"lg"}
+                key={index}
+              >
+                {option}
+              </Button>
+            ))}
+          </div>
+          <QuizControls></QuizControls>
         </CardContent>
       </Card>
     </div>
   );
 }
-
-export default Question;
