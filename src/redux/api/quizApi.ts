@@ -13,6 +13,11 @@ export const quizApi = createApi({
         method: "POST",
         body,
       }),
+      invalidatesTags: ["quiz"],
+    }),
+    getAllQuiz: builder.query({
+      query: () => "/quizzes",
+      providesTags: ["quiz"],
     }),
   }),
 });
